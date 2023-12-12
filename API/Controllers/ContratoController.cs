@@ -10,7 +10,7 @@ namespace API.Controllers;
 
 [ApiVersion("1.0")]
 [ApiVersion("1.1")]
-[Authorize]
+/* [Authorize] */
 
 public class ContratoController : BaseApiController
 {
@@ -55,6 +55,28 @@ public class ContratoController : BaseApiController
         var entidad = await unitofwork.Contratos.GetAllAsync(entidadeParams.PageIndex, entidadeParams.PageSize, entidadeParams.Search);
         var listEntidad = mapper.Map<List<ContratoDto>>(entidad.registros);
         return new Pager<ContratoDto>(listEntidad, entidad.totalRegistros, entidadeParams.PageIndex, entidadeParams.PageSize, entidadeParams.Search);
+    }
+
+    [HttpGet("consulta-7")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> ContratosActivos()
+    {
+        var entidad = await unitofwork.Contratos.ContratosActivos();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-7")]
+    [MapToApiVersion("1.1")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Pager<object>>> ContratosActivosPaginated([FromQuery] Params entidadParams)
+    {
+        var entidad = await unitofwork.Contratos.ContratosActivosPaginated(entidadParams.PageIndex, entidadParams.PageSize, entidadParams.Search);
+        var listEntidad = mapper.Map<List<object>>(entidad.registros);
+        return new Pager<object>(listEntidad, entidad.totalRegistros, entidadParams.PageIndex, entidadParams.PageSize, entidadParams.Search);
     }
 
     [HttpPost]

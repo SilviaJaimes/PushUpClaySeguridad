@@ -15,6 +15,50 @@ public class ContratoRepository : GenericRepository<Contrato>, IContrato
         _context = context;
     }
 
+    //Consulta 7
+    public async Task<IEnumerable<Object>> ContratosActivos()
+    {
+        var contratos = await (
+            from c in _context.Contratos
+            where c.Estado.Descripcion == "Activo"
+            select new
+            {
+                NumeroContrato = c.Id,
+                NombreCliente = c.Cliente.Nombre,
+                NombreEmpleado = c.Empleado.Nombre
+            }).ToListAsync();
+
+        return contratos;
+    }
+
+    //Consulta 7 con paginación
+    public async Task<(int totalRegistros, IEnumerable<Object> registros)> ContratosActivosPaginated(int pageIndex, int pageSize, string search = null)
+    {
+        var query = from c in _context.Contratos
+                    where c.Estado.Descripcion == "Activo"
+                    select new
+                    {
+                        NumeroContrato = c.Id,
+                        NombreCliente = c.Cliente.Nombre,
+                        NombreEmpleado = c.Empleado.Nombre
+                    };
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            var lowerSearch = search.ToLower();
+            query = query.Where(m => m.NumeroContrato.ToString().Contains(lowerSearch));
+        }
+
+        int totalRegistros = await query.CountAsync();
+
+        var registros = await query
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (totalRegistros, registros);
+    }
+
     public override async Task<IEnumerable<Contrato>> GetAllAsync()
     {
         return await _context.Contratos

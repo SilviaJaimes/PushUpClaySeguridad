@@ -13,13 +13,11 @@ public class ApiContextSeed
     {
         try
         {
-            var ruta = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
             if (!context.Usuarios.Any())
             {
-                using (var reader = new StreamReader(ruta + @"/Data/Csv/usuario.csv"))
+                using (var readerUsuario = new StreamReader("../Persistence/Data/Csv/usuario.csv"))
                 {
-                    using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                    using (var csv = new CsvReader(readerUsuario, CultureInfo.InvariantCulture))
                     {
                         var list = csv.GetRecords<Usuario>();
                         context.Usuarios.AddRange(list);
@@ -30,7 +28,7 @@ public class ApiContextSeed
 
             if (!context.RolUsuarios.Any())
             {
-                using (var reader = new StreamReader(ruta + @"\Data\Csv\rolUsuario.csv"))
+                using (var reader = new StreamReader("../Persistence/Data/Csv/rolUsuario.csv"))
                 {
                     using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
                     {
