@@ -1,4 +1,4 @@
-# Prueba Backend 🌿
+# Prueba Backend 🔧
 
 Este proyecto proporciona una API que permite integrar diferentes aplicaciones creadas por una empresa consultora de software.
 
