@@ -1,6 +1,6 @@
-# Proyecto de jardinería 🌿
+# Prueba Backend 🌿
 
-Este proyecto proporciona una API que permite llevar el control, gestión y registro de todos los productos y servicios de una jardinería.
+Este proyecto proporciona una API que permite integrar diferentes aplicaciones creadas por una empresa consultora de software.
 
 ## Características 🌟
 
@@ -21,7 +21,7 @@ Necesitaremos de este usuario para obtener el token que se utilizará para el re
 
 ## 1. Generación del token 🔑:
 
-**Endpoint**: `http://localhost:5033/api/usuario/token`
+**Endpoint**: `http://localhost:5258/api/prueba/usuario/token`
 
 **Método**: `POST`
 
@@ -36,7 +36,7 @@ Al obtener el token del administrador, se podrá realizar el registro de usuario
 
 ## 2. Registro de Usuarios 📝:
 
-**Endpoint**: `http://localhost:5033/api/usuario/register`
+**Endpoint**: `http://localhost:5258/api/prueba/usuario/register`
 
 **Método**: `POST`
 
@@ -56,7 +56,7 @@ Una vez registrado el usuario tendrá que ingresar para recibir un token, este s
 
 ## 3. Refresh Token 🔄:
 
-**Endpoint**: `http://localhost:5033/api/usuario/refresh-token`
+**Endpoint**: `http://localhost:5258/api/prueba/usuario/refresh-token`
 
 **Método**: `POST`
 
@@ -71,20 +71,18 @@ Se dejan los mismos datos en el Body y luego se ingresa al "Auth", "Bearer", all
 
 ## Otros Endpoints
 
-Obtener Todos los Usuarios: **GET** `http://localhost:5033/api/usuario`
+Obtener Todos los Usuarios: **GET** `http://localhost:5258/api/prueba/usuario`
 
-Obtener Usuario por ID: **GET** `http://localhost:5033/api/usuario/{id}`
+Obtener Usuario por ID: **GET** `http://localhost:5258/api/prueba/usuario/{id}`
 
-Actualizar Usuario: **PUT** `http://localhost:5033/api/usuario/{id}`
+Actualizar Usuario: **PUT** `http://localhost:5258/api/prueba/usuario/{id}`
 
-Eliminar Usuario: **DELETE** `http://localhost:5033/api/usuario/{id}`
+Eliminar Usuario: **DELETE** `http://localhost:5258/api/prueba/usuario/{id}`
 
 
 ## Desarrollo de los Endpoints requeridos⌨️
 
-Hay Endpoints que tiene su versión 1.0 y 1.1, al igual que están con y sin paginación.
-
-### Endpoint con paginación 📄
+Cada Endpoint tiene la versión 1.0 y la 1.1, estos también cuentan con paginación, que se encuentra en cada Endpoint en la versión 1.1.  
 
 Para consultar la versión 1.0 de todos se ingresa únicamente el Endpoint; para consultar la versión 1.1 se deben seguir los siguientes pasos: 
 
@@ -96,9 +94,47 @@ Para realizar la paginación se va al apartado de "Query" y se ingresa lo siguie
 
 ![image](https://github.com/SilviaJaimes/Proyecto-Veterinaria/assets/132016483/22683e46-037e-4f30-96b8-161df8622b40)      
 
-#### 1. Devuelve un listado con el nombre de los todos los clientes españoles:  
+#### 1. Listar todos los empleados de la empresa de seguridad:  
 
-Endpoint: `http://localhost:5033/api/cliente/consulta-1`  
+Endpoint: `http://localhost:5258/api/prueba/persona/consulta-1`  
+
+Método: `GET`  
+
+#### 2. Listar todos los empleados que son vigilantes:  
+
+Endpoint: `http://localhost:5258/api/prueba/persona/consulta-2`  
+
+Método: `GET`  
+
+#### 3. Listar dos números de contacto de un empleado que sea vigilante:  
+
+Endpoint: `http://localhost:5258/api/prueba/persona/consulta-3`  
+
+Método: `GET`  
+
+#### 4. Listar todos los clientes que vivan en la ciudad de Bucaramanga:  
+
+Endpoint: `http://localhost:5258/api/prueba/persona/consulta-4`  
+
+Método: `GET`  
+
+#### 5. Listar todos los clientes que vivan en Girón y Piedecuesta:  
+
+Endpoint: `http://localhost:5258/api/prueba/persona/consulta-5`  
+
+Método: `GET`  
+
+#### 6. Listar todos los clientes que tengan más de 5 años de antigüedad:  
+
+Endpoint: `http://localhost:5258/api/prueba/persona/consulta-6`  
+
+Método: `GET`  
+
+#### 7. Listar todos los contratos cuyo estado es `Activo`:  
+
+Muestra: el número de contrato, el nombre del cliente y el empleado que registro el contrato.
+
+Endpoint: `http://localhost:5258/api/prueba/contrato/consulta-7`  
 
 Método: `GET`  
 
